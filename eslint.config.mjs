@@ -1,6 +1,6 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import prettier from 'eslint-config-prettier';
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import prettier from "eslint-config-prettier";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -10,25 +10,28 @@ export default tseslint.config(
   {
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.json',
+        project: "./tsconfig.json",
         tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
-      '@typescript-eslint/no-floating-promises': 'error',
-      '@typescript-eslint/no-misused-promises': 'error',
-      '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/require-await': 'error',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    
-      'no-eval': 'error',
-      'no-implied-eval': 'error',
-      
-      'no-unreachable': 'error',
-      'no-await-in-loop': 'warn',
+      "@typescript-eslint/no-floating-promises": "error",
+      "@typescript-eslint/no-misused-promises": "error",
+      "@typescript-eslint/await-thenable": "error",
+      "@typescript-eslint/require-await": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
+
+      "no-eval": "error",
+      "no-implied-eval": "error",
+
+      "no-unreachable": "error",
+      "no-await-in-loop": "warn",
     },
   },
   {
-    ignores: ['node_modules/', 'dist/', '**/*.js', '**/*.mjs'],
-  }
+    ignores: ["node_modules/", "dist/", "**/*.js", "**/*.mjs"],
+  },
 );

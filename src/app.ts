@@ -1,4 +1,9 @@
-import express, { ErrorRequestHandler, NextFunction, Request, Response } from "express";
+import express, {
+  ErrorRequestHandler,
+  NextFunction,
+  Request,
+  Response,
+} from "express";
 
 const app = express();
 
@@ -90,7 +95,6 @@ app.delete("/assistants/:id", (req: Request, res: Response) => {
   assistants.splice(index, 1);
   res.status(204).send();
 });
-
 
 const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   console.error(err);
