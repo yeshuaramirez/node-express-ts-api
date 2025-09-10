@@ -12,7 +12,9 @@
     "test": "jest --runInBand",
     "test:watch": "jest --watchAll",
     "docker:build": "docker build -t node-express-ts-api:local .",
-    "docker:run": "docker run --rm -p 3000:3000 node-express-ts-api:local"
+    "docker:run": "docker run --rm -p 3000:3000 node-express-ts-api:local",
+    "format:check": "prettier --check .",
+    "test:e2e": "jest --testPathPattern=tests/.*\\.e2e\\..*"
   },
   "keywords": [],
   "author": "",
