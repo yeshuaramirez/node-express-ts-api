@@ -5,7 +5,6 @@ Este repositorio implementa un servicio web en Node.js + Express + TypeScript co
 **Nota:** El laboratorio pedía despliegues en Azure AKS (staging) y Azure Container Apps (producción).  
 Debido a limitaciones de permisos en la suscripción, solo se implementó la parte de CI/CD posible: construcción, pruebas, linting, formateo y empaquetado con Docker en GitHub Actions.
 
-
 ## Alcance logrado
 
 - API REST en Node.js + Express + TypeScript, con CRUD funcional.
@@ -18,7 +17,6 @@ Debido a limitaciones de permisos en la suscripción, solo se implementó la par
 - Creación de AKS (staging): **no posible** por falta de permisos.
 - Despliegue en Azure Container Apps (producción): **no posible** por falta de permisos.
 
-
 ## Tecnologías y Herramientas Utilizadas
 
 - **Runtime:** Node.js 18+
@@ -29,9 +27,8 @@ Debido a limitaciones de permisos en la suscripción, solo se implementó la par
 - **Contenedores:** Docker
 - **CI/CD:** GitHub Actions
 - **Registry:** Fue posible utilizar la herramienta Azure Container Registry (ACR), pero por las limitaciones de AKS y ACA no se utilizó de manera directa.
-- **Orquestación:** No fue posible utilizar, por las limitaciones de Azure, Kubernetes (AKS) - *Staging*.
-- **Serverless:** No fue posible utilizar, por las limitaciones de Azure, Azure Container Apps - *Producción*.
-
+- **Orquestación:** No fue posible utilizar, por las limitaciones de Azure, Kubernetes (AKS) - _Staging_.
+- **Serverless:** No fue posible utilizar, por las limitaciones de Azure, Azure Container Apps - _Producción_.
 
 ## Estructura del proyecto
 
@@ -55,8 +52,7 @@ node-express-ts-api/
 ├── tsconfig.json
 └── README.md
 
-````
-
+```
 
 ## Preparación del entorno local
 
@@ -67,7 +63,7 @@ mkdir node-express-ts-api
 cd node-express-ts-api
 git init
 npm init -y
-````
+```
 
 ### Instalar dependencias
 
@@ -79,10 +75,9 @@ npm install -D typescript ts-node-dev ts-node @types/node @types/express jest ts
 
 ### Otras configuraciones
 
-* `tsconfig.json`: compilador TypeScript.
-* `jest.config.js`: configuración de pruebas.
-* `eslint.config.js`: reglas de linting.
-
+- `tsconfig.json`: compilador TypeScript.
+- `jest.config.js`: configuración de pruebas.
+- `eslint.config.js`: reglas de linting.
 
 ## Configuración del Proyecto
 
@@ -90,35 +85,33 @@ npm install -D typescript ts-node-dev ts-node @types/node @types/express jest ts
 
 Configurado para:
 
-* Target ES2020
-* Módulos ESM
-* Strict mode habilitado
-* Salida en directorio `dist/`
-* Compatibilidad con Jest
+- Target ES2020
+- Módulos ESM
+- Strict mode habilitado
+- Salida en directorio `dist/`
+- Compatibilidad con Jest
 
 ### ESLint y Prettier (`eslint.config.js`)
 
 Configuración moderna con formato plano:
 
-* Detección de promesas no manejadas
-* Prevención de código no utilizado
-* Reglas de seguridad (no-eval, no-implied-eval)
-* Integración con Prettier para formateo consistente
-
+- Detección de promesas no manejadas
+- Prevención de código no utilizado
+- Reglas de seguridad (no-eval, no-implied-eval)
+- Integración con Prettier para formateo consistente
 
 ## Implementación de la API
 
 La API incluye:
 
-* Endpoint raíz (`/`) con mensaje base
-* Endpoint de health check (`/health`)
-* CRUD completo para entidad "Assistants" con operaciones:
-
-  * `GET /assistants` - Listar todos
-  * `GET /assistants/:id` - Obtener por ID
-  * `POST /assistants` - Crear nuevo
-  * `PUT /assistants/:id` - Actualizar
-  * `DELETE /assistants/:id` - Eliminar
+- Endpoint raíz (`/`) con mensaje base
+- Endpoint de health check (`/health`)
+- CRUD completo para entidad "Assistants" con operaciones:
+  - `GET /assistants` - Listar todos
+  - `GET /assistants/:id` - Obtener por ID
+  - `POST /assistants` - Crear nuevo
+  - `PUT /assistants/:id` - Actualizar
+  - `DELETE /assistants/:id` - Eliminar
 
 ---
 
@@ -126,10 +119,10 @@ La API incluye:
 
 Se implementaron pruebas end-to-end con Jest y Supertest que cubren:
 
-* Endpoints básicos (raíz y health check)
-* Todas las operaciones CRUD
-* Validación de respuestas HTTP y estructuras de datos
-* Manejo de errores
+- Endpoints básicos (raíz y health check)
+- Todas las operaciones CRUD
+- Validación de respuestas HTTP y estructuras de datos
+- Manejo de errores
 
 ### Ejecutar pruebas
 
@@ -175,7 +168,6 @@ npm run docker:run
 docker run --rm -p 3000:3000 node-express-ts-api:local
 ```
 
-
 ## Configuración de Azure
 
 ### Variables de entorno Azure
@@ -212,15 +204,14 @@ docker build -t $IMAGE_TAG .
 docker push $IMAGE_TAG
 ```
 
-
 ## GitHub Actions
 
 ### CI: `.github/workflows/ci.yml`
 
 Se ejecuta en:
 
-* Push a `main`
-* Pull requests
+- Push a `main`
+- Pull requests
 
 #### Pasos del CI:
 
@@ -231,7 +222,6 @@ Se ejecuta en:
 5. Verificación de formato (`npm run format:check`)
 6. Compilación (`npm run build`)
 7. Pruebas (`npm test`)
-
 
 ### CD Simulado: `.github/workflows/cd.yml`
 
@@ -245,29 +235,24 @@ Se ejecuta **tras un CI exitoso**.
 
 > Esto simula el paso de “deploy”. En un escenario real, se empujaría la imagen a un registry y se desplegaría en AKS/ACA.
 
-
-
 ## Limitaciones y Desafíos
 
 ### Problemas con Azure Kubernetes Service (AKS)
 
 No fue posible completar la configuración de AKS debido a:
 
-* Limitaciones de permisos en la cuenta de Azure
-* Restricciones de recursos en la suscripción
-
-
+- Limitaciones de permisos en la cuenta de Azure
+- Restricciones de recursos en la suscripción
 
 ## Trabajo en Azure (limitado)
 
 ### Se logró:
 
-* Creación de Resource Group (RG)
-* Creación y login en Azure Container Registry (ACR)
-* Construcción y push de imagen Docker al ACR
-
+- Creación de Resource Group (RG)
+- Creación y login en Azure Container Registry (ACR)
+- Construcción y push de imagen Docker al ACR
 
 ### No se pudo completar:
 
-* Creación de AKS (staging)
-* Creación de Azure Container Apps (producción)
+- Creación de AKS (staging)
+- Creación de Azure Container Apps (producción)
